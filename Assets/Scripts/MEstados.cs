@@ -17,8 +17,12 @@ public class MEstados : MonoBehaviour
 
 
     private Vector3 movimientoAletorio = new Vector3(0, 0, 0);
-    private float randomX;
-    private float randomZ;
+       public Transform maximaPosicionX;
+       public Transform maximaPosicionZ;
+       public Transform minimaPosicionZ;
+       public Transform minimaPosicionX;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,34 +61,38 @@ public class MEstados : MonoBehaviour
 
     public void CambiarEstado(Estados n)
     {
+        switch (n)
+        {
+            case Estados.Deambular:
+                PosicionarAleatorio();
+                StartCoroutine(MovimientoAleatorio());
+                break;
+            case Estados.Perseguir:
+                break;
+            case Estados.Atacar:
+                break;
+            default:
+                break;
+        }
+
         estado = n;
     }
 
     public void EstadoDeambular()
     {
 
-        movimientoAletorio = new Vector3(randomX, transform.position.y, randomZ);
-
-        silbon.SetDestination(movimientoAletorio);
-
-        if (transform.position == movimientoAletorio)
-        {
-            StartCoroutine(MovimientoAleatorio());
-        }
-
         CalcularDistancia();
         if (distanciaJugador < distanciaSeguir)
         {
             CambiarEstado(Estados.Perseguir);
         }
+
     }
 
     public void EstadoPerseguir()
     {
 
-        movimientoAletorio = new Vector3(jugador.position.x, transform.position.y, jugador.position.z);
-
-        silbon.SetDestination(movimientoAletorio);
+        silbon.SetDestination(new Vector3(jugador.position.x, transform.position.y, jugador.position.z));
 
         CalcularDistancia();
         if (distanciaJugador < distanciaAtaque)
@@ -94,7 +102,7 @@ public class MEstados : MonoBehaviour
         else if (distanciaJugador > distanciaHuir)
         {
             CambiarEstado(Estados.Deambular);
-            StartCoroutine(MovimientoAleatorio());
+            
         }
     }
 
@@ -105,9 +113,17 @@ public class MEstados : MonoBehaviour
 
     public IEnumerator MovimientoAleatorio()
     {
-        yield return new WaitForSeconds(1f);
-         randomX = Random.Range(-15, 15);
-         randomZ = Random.Range(-15, 15);
+        yield return new WaitForSeconds(0.1f);
+        while (estado == Estados.Deambular)
+        {
+            yield return new WaitForSeconds(10f);
+            PosicionarAleatorio();
+        } 
+    }
+
+    public void PosicionarAleatorio()
+    {
+        silbon.SetDestination(new Vector3(Random.Range(minimaPosicionX.position.x, maximaPosicionX.position.x), transform.position.y, Random.Range(minimaPosicionZ.position.z, maximaPosicionZ.position.z)));
     }
 
     private void OnDrawGizmos()
