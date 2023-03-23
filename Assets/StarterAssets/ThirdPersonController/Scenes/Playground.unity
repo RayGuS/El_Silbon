@@ -1267,6 +1267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 2
+  targetSpeed: 0
   SprintSpeed: 5.335
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -1298,6 +1299,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  _speed: 0
 --- !u!143 &4416926083347132233
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1487,6 +1489,9 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _playerInput: {fileID: 4416926083347132239}
+  _thirdPersonController: {fileID: 4416926083347132232}
+  CrouchSpeed: 1.1
+  anim: {fileID: 6982812147933622147}
 --- !u!136 &6982812147933622149
 CapsuleCollider:
   m_ObjectHideFlags: 0

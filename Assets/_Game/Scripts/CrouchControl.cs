@@ -1,8 +1,10 @@
+using JetBrains.Annotations;
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class CrouchControl : MonoBehaviour
 {
@@ -11,8 +13,12 @@ public class CrouchControl : MonoBehaviour
     public PlayerInput _playerInput;
     public ThirdPersonController _thirdPersonController;
 
-    Animator anim;
+    private float moveSpeed;
     public float CrouchSpeed = 0.5f;
+    private float sprintSpeed;
+
+    public Animator anim;
+    
     protected bool isCrouching = false;
     
     protected CapsuleCollider capCollider;
@@ -20,10 +26,11 @@ public class CrouchControl : MonoBehaviour
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
-        anim = GetComponent<Animator>();
+        moveSpeed = _thirdPersonController.MoveSpeed;
+        sprintSpeed = _thirdPersonController.SprintSpeed;
+        //anim = GetComponent<Animator>();
         Crouch.Enable();
         capCollider = GetComponent<CapsuleCollider>();
-
     }
 
     // Update is called once per frame
@@ -34,18 +41,19 @@ public class CrouchControl : MonoBehaviour
 
     private void Crouching()
     {
-        anim.SetBool("Crouch", _playerInput.actions["Crouch"].ReadValue<float>() > 0.5f);
-        if (_playerInput.actions["Crouch"].ReadValue<float>() == 1f)
+        bool crouching = _playerInput.actions["Crouch"].ReadValue<float>() > 0.5f;
+        anim.SetBool("Crouch",crouching);
+        if (crouching)
         {
-            _thirdPersonController._speed = CrouchSpeed;
+            _thirdPersonController.MoveSpeed = CrouchSpeed;
+            _thirdPersonController.SprintSpeed = moveSpeed;
             capCollider.height = 0.5f;
             capCollider.center = new Vector3(capCollider.center.x, 0.25f, capCollider.center.z);
         }
-
-        //Debug.DrawRay(transform.position, Vector3.up * 2f, Color.green);
-
-        if (_playerInput.actions["Crouch"].ReadValue<float>() == 0f)
+        else
         {
+            _thirdPersonController.MoveSpeed = moveSpeed;
+            _thirdPersonController.SprintSpeed = sprintSpeed;
             var cantStandup = Physics.Raycast(transform.position, Vector3.up, 2f);
             if (!cantStandup)
             {
