@@ -14,15 +14,10 @@ public class MEstados : MonoBehaviour
     public Transform jugador;
     public NavMeshAgent silbon;
 
+       public Transform posicionMaxima;
+       public Transform posicionMinima;
 
-
-    private Vector3 movimientoAletorio = new Vector3(0, 0, 0);
-       public Transform maximaPosicionX;
-       public Transform maximaPosicionZ;
-       public Transform minimaPosicionZ;
-       public Transform minimaPosicionX;
-
-
+    public ControlMaestro controlMaestro;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +60,7 @@ public class MEstados : MonoBehaviour
         {
             case Estados.Deambular:
                 PosicionarAleatorio();
+                Asechar();
                 StartCoroutine(MovimientoAleatorio());
                 break;
             case Estados.Perseguir:
@@ -116,14 +112,29 @@ public class MEstados : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         while (estado == Estados.Deambular)
         {
-            yield return new WaitForSeconds(10f);
-            PosicionarAleatorio();
+
+            if (controlMaestro.tiempo < 180f)
+            {
+                yield return new WaitForSeconds(10f);
+                PosicionarAleatorio();
+            }
+            else
+            {
+                yield return new WaitForSeconds(1f);
+                Asechar();
+            }
+
         } 
+    }
+
+    public void Asechar()
+    {
+        silbon.SetDestination(new Vector3(Random.Range(jugador.position.x, (jugador.position.x - 20)), transform.position.y, Random.Range(jugador.position.z, (jugador.position.z - 20))));
     }
 
     public void PosicionarAleatorio()
     {
-        silbon.SetDestination(new Vector3(Random.Range(minimaPosicionX.position.x, maximaPosicionX.position.x), transform.position.y, Random.Range(minimaPosicionZ.position.z, maximaPosicionZ.position.z)));
+        silbon.SetDestination(new Vector3(Random.Range(posicionMinima.position.x, posicionMaxima.position.x), transform.position.y, Random.Range(posicionMinima.position.z, posicionMaxima.position.z)));
     }
 
     private void OnDrawGizmos()
