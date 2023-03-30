@@ -19,7 +19,13 @@ public class BarraCordura : MonoBehaviour
             corduraActual -= Time.deltaTime;
             barraCordura.fillAmount = corduraActual / corduraMax;
         }
-        
+
+        if (luz == true && corduraActual<corduraMax)
+        {
+            corduraActual += Time.deltaTime;
+            barraCordura.fillAmount = corduraActual / corduraMax;
+        }
+
 
     }
 
