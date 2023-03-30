@@ -22,11 +22,13 @@ public class Sombra : MonoBehaviour
         {
             yield return new WaitForSeconds(periodoRevision);
 
-            if (cordura.corduraActual < condicion && cordura.corduraActual > 0)
+            if (cordura.corduraActual < condicion )
             {
                 Vector3 posAleatoria = new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
                 Instantiate(sombra, posAleatoria, sombra.transform.rotation);
             }
+
+
         }
     }
 }
