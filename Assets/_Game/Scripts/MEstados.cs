@@ -108,7 +108,7 @@ public class MEstados : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         while (estado == Estados.Deambular)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f);
             PosicionarAleatorio();
         } 
     }
