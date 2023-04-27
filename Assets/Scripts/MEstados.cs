@@ -13,11 +13,8 @@ public class MEstados : MonoBehaviour
     public float distanciaJugador;
     public Transform jugador;
     public NavMeshAgent silbon;
+    private float desfase = 240f;
 
-       public Transform posicionMaxima;
-       public Transform posicionMinima;
-
-    public ControlMaestro controlMaestro;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +57,6 @@ public class MEstados : MonoBehaviour
         {
             case Estados.Deambular:
                 PosicionarAleatorio();
-                Asechar();
                 StartCoroutine(MovimientoAleatorio());
                 break;
             case Estados.Perseguir:
@@ -112,29 +108,23 @@ public class MEstados : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         while (estado == Estados.Deambular)
         {
-
-            if (controlMaestro.tiempo < 180f)
-            {
-                yield return new WaitForSeconds(10f);
-                PosicionarAleatorio();
-            }
-            else
-            {
-                yield return new WaitForSeconds(1f);
-                Asechar();
-            }
-
+            yield return new WaitForSeconds(10f);
+            PosicionarAleatorio();
         } 
-    }
-
-    public void Asechar()
-    {
-        silbon.SetDestination(new Vector3(Random.Range(jugador.position.x, (jugador.position.x - 20)), transform.position.y, Random.Range(jugador.position.z, (jugador.position.z - 20))));
     }
 
     public void PosicionarAleatorio()
     {
-        silbon.SetDestination(new Vector3(Random.Range(posicionMinima.position.x, posicionMaxima.position.x), transform.position.y, Random.Range(posicionMinima.position.z, posicionMaxima.position.z)));
+        silbon.SetDestination(new Vector3(Random.Range(jugador.position.x - desfase, jugador.position.x + desfase), transform.position.y, Random.Range(jugador.position.z - desfase, jugador.position.z + desfase)));
+        ReducirRango();
+    }
+
+    public void ReducirRango()
+    {
+        if (desfase > 0)
+        {
+            desfase = desfase - Time.deltaTime *30;
+        } 
     }
 
     private void OnDrawGizmos()
