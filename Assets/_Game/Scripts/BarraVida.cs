@@ -11,11 +11,11 @@ public class BarraVida : MonoBehaviour
     public float vidaMax;
     public float vidaActual;
 
-    void OnTriggerEnter (Collider other)
+    void OnTriggerStay (Collider other)
     {
         if (other.tag == "Sombra")
         {
-            vidaActual = vidaActual - daño;
+            vidaActual = vidaActual - daño * Time.deltaTime;
             barraVida.fillAmount = vidaActual / vidaMax;
         }
     }

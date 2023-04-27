@@ -6,9 +6,9 @@ public class DestruirSombra : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Luz")
+        if (other.tag == "Sombra")
         {
-            Destroy(this);
+            Destroy(other);
         }
     }
 }
