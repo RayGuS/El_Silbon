@@ -30,6 +30,8 @@ public class AgarrarObjetos : MonoBehaviour
 
     public void DropObj()
     {
+        PlayerController.singleton.isHolding = false;
+
         ObjetoPruebaParent.DetachChildren();
         objetoPrueba.transform.eulerAngles = new Vector3(objetoPrueba.transform.position.x, objetoPrueba.transform.position.z, objetoPrueba.transform.position.y);
         objetoPrueba.GetComponent<Rigidbody>().isKinematic = false;
@@ -39,6 +41,7 @@ public class AgarrarObjetos : MonoBehaviour
 
     public void GrabObj()
     {
+        PlayerController.singleton.isHolding = true;
         objetoPrueba.GetComponent<Rigidbody>().isKinematic = true;
 
         objetoPrueba.transform.position = ObjetoPruebaParent.transform.position;
@@ -53,7 +56,7 @@ public class AgarrarObjetos : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
        
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !PlayerController.singleton.isHolding)
         {
             bool isEKeyHeld = _playerInput.actions["Grab"].ReadValue<float>() > 0.5f;
             if (isEKeyHeld)
