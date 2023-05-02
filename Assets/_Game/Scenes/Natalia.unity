@@ -889,8 +889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barraCordura: {fileID: 1776224691}
-  corduraMax: 20
-  corduraActual: 20
+  corduraMax: 25
+  corduraActual: 25
   luz: 1
 --- !u!23 &1779577425
 MeshRenderer:
