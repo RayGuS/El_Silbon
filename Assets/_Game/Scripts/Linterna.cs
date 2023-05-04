@@ -11,11 +11,12 @@ public class Linterna : MonoBehaviour
     public float cantBateria = 100;
     public TMP_Text porcentaje;
     public float perdidaBateria = 0.5f;
+    private int valorBateria = 0;
 
     void Update()
     {
         cantBateria = Mathf.Clamp(cantBateria, 0, 100);
-        int valorBateria = (int)cantBateria;
+        valorBateria = (int)cantBateria;
         porcentaje.text = valorBateria.ToString() + "%";
 
         if (Input.GetKeyDown("f"))
