@@ -25,9 +25,6 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // Start is called before the first frame update
     void Start()
     {
-
-        StartCoroutine(RellenarFondo());
-
         acumulable = baseDAtos.baseDatos[ID].acumulable;
         Boton = GetComponent<Button>();
         descripcion = Inventario.descripcion;
@@ -45,16 +42,16 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public IEnumerator RellenarFondo()
+    public void RellenarFondo()
     {
-        yield return new WaitForSeconds(1f);
         if (transform.parent.GetComponent<Image>() != null)
         {
             transform.parent.GetComponent<Image>().fillCenter = true;
         }
+
         tCantidad.text = cantidad.ToString();
 
         if (transform.parent == Inventario.canvas)

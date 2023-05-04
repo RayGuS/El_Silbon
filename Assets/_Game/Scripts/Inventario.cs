@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Inventario : MonoBehaviour
 {
@@ -44,10 +45,13 @@ public class Inventario : MonoBehaviour
 
     public Vector3 posOriginal;
 
+    public InputAction click;
+    public PlayerInput playerInput;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Arrastrar());
+        click.Enable();
 
         posOriginal = transform.parent.position;
 
@@ -66,14 +70,18 @@ public class Inventario : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(Arrastrar());
+        Arrastrar();
+        
     }
 
-    public IEnumerator Arrastrar()
+    public void Arrastrar()
     {
-        yield return new WaitForSeconds(1f);
-        if (Input.GetMouseButtonDown(1))
+        //yield return new WaitForSeconds(1f);
+
+        bool isclickKeyHeld = playerInput.actions["click"].ReadValue<float>() > 0.5f;
+        if (isclickKeyHeld)
         {
+            print("Hi");
             datos.position = Input.mousePosition;
             grafica.Raycast(datos, resultados);
             if (resultados.Count > 0)
@@ -94,7 +102,7 @@ public class Inventario : MonoBehaviour
         {
             objetoSeleccionado.GetComponent<RectTransform>().localPosition = RastroObjeto(Input.mousePosition);
 
-            if (Input.GetMouseButtonUp(1))
+            if (isclickKeyHeld)
             {
                 datos.position = Input.mousePosition;
                 resultados.Clear();

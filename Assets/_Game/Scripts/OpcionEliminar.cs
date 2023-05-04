@@ -13,7 +13,7 @@ public class OpcionEliminar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inv = GameObject.Find("Inv").GetComponent<Inventario>();
+        inv = GameObject.Find("inv").GetComponent<Inventario>();
         StartCoroutine(Eliminar());
     }
 

@@ -13,7 +13,7 @@ public class CPJugador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(AbrirInventario());
+        //StartCoroutine(AbrirInventario());
         OpenInventory.Enable();
     }
 
@@ -30,6 +30,8 @@ public class CPJugador : MonoBehaviour
     public IEnumerator AbrirInventario()
     {
         yield return new WaitForSeconds(1f);
+
+        Cursor.lockState = CursorLockMode.None;
 
             inventario.SetActive(!inventario.activeInHierarchy);
             inventario.transform.parent.position = inventario.GetComponent<Inventario>().posOriginal;

@@ -9,6 +9,7 @@ public class ItemMundo : MonoBehaviour
     public int cantidad;
     public int ID;
     public Inventario inv;
+    public bool acumulable;
 
     public InputAction GrabItem;
     public PlayerInput playerInput;
@@ -29,11 +30,11 @@ public class ItemMundo : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            bool isJKeyHeld = playerInput.actions["GrabItem"].ReadValue<float>() > 0.5f;
-            if (isJKeyHeld)
-            {
+          //  bool isJKeyHeld = playerInput.actions["GrabItem"].ReadValue<float>() > 0.5f;
+          //  if (isJKeyHeld)
+          //  {
                 inv.AgregarItem(ID, cantidad);
-            }
+          //  }
         }
     }
 
