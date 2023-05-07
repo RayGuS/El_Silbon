@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class Inventario : MonoBehaviour
 {
@@ -45,13 +44,10 @@ public class Inventario : MonoBehaviour
 
     public Vector3 posOriginal;
 
-    public InputAction click;
-    public PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        click.Enable();
 
         posOriginal = transform.parent.position;
 
@@ -70,18 +66,14 @@ public class Inventario : MonoBehaviour
 
     private void Update()
     {
-        Arrastrar();
-        
+        Arrastrar();        
     }
 
     public void Arrastrar()
     {
-        //yield return new WaitForSeconds(1f);
 
-        bool isclickKeyHeld = playerInput.actions["click"].ReadValue<float>() > 0.5f;
-        if (isclickKeyHeld)
+        if(Input.GetMouseButtonDown(1))
         {
-            print("Hi");
             datos.position = Input.mousePosition;
             grafica.Raycast(datos, resultados);
             if (resultados.Count > 0)
@@ -101,8 +93,11 @@ public class Inventario : MonoBehaviour
         if (objetoSeleccionado != null)
         {
             objetoSeleccionado.GetComponent<RectTransform>().localPosition = RastroObjeto(Input.mousePosition);
+        }
 
-            if (isclickKeyHeld)
+        if (objetoSeleccionado != null)
+        {
+            if (Input.GetMouseButtonUp(1))
             {
                 datos.position = Input.mousePosition;
                 resultados.Clear();
@@ -134,27 +129,25 @@ public class Inventario : MonoBehaviour
                                 objetoSeleccionado.transform.SetParent(resultado.gameObject.transform.parent);
                                 resultado.gameObject.transform.SetParent(padreAnt);
                                 resultado.gameObject.transform.localPosition = Vector3.zero;
-
-                            }
-                            if (resultado.gameObject.CompareTag("Eliminar"))
-                            {
-                                if (objetoSeleccionado.gameObject.GetComponent<Item>().cantidad >= 2)
-                                {
-                                    eliminar.gameObject.SetActive(true);
-                                }
-                                else
-                                {
-                                    eliminar.gameObject.SetActive(false);
-                                    EliminarItem(objetoSeleccionado.gameObject.GetComponent<Item>().ID, objetoSeleccionado.gameObject.GetComponent<Item>().cantidad);
-                                }
                             }
                         }
-
+                        if (resultado.gameObject.CompareTag("Eliminar"))
+                        {
+                            if (objetoSeleccionado.gameObject.GetComponent<Item>().cantidad >= 2)
+                            {
+                                eliminar.gameObject.SetActive(true);
+                            }
+                            else
+                            {
+                                eliminar.gameObject.SetActive(false);
+                                EliminarItem(objetoSeleccionado.gameObject.GetComponent<Item>().ID, objetoSeleccionado.gameObject.GetComponent<Item>().cantidad);
+                            }
+                        }
                     }
                 }
                 objetoSeleccionado.transform.localPosition = Vector3.zero;
                 objetoSeleccionado = null;
-            }
+            }            
         }
         resultados.Clear();
     }
@@ -200,9 +193,9 @@ public class Inventario : MonoBehaviour
         }
     }
 
-    public Vector2 RastroObjeto(Vector2 posicion)
+    public Vector2 RastroObjeto(Vector2 posicionPantalla)
     {
-        Vector2 enfoque = Camera.main.ScreenToViewportPoint(posicion);
+        Vector2 enfoque = Camera.main.ScreenToViewportPoint(posicionPantalla);
         Vector2 tamCanvas = canvas.GetComponent<RectTransform>().sizeDelta;
 
         return (new Vector2(enfoque.x * tamCanvas.x, enfoque.y * tamCanvas.y) - (tamCanvas/2));
@@ -237,22 +230,27 @@ public class Inventario : MonoBehaviour
         {
             for (int i = pool.Count; i < inventario.Count; i++)
             {
-                Item objeto = Instantiate(item, contenido.GetChild(i));
-                pool.Add(objeto);
-
-                if (contenido.GetChild(0).childCount >= 2)
+                for (int j = 0; j < inventario.Count; j++)
                 {
-                    for (int s = 0; s < contenido.childCount; s++)
+                    Item objeto = Instantiate(item, contenido.GetChild(j));
+
+                    pool.Add(objeto);
+                    objeto.transform.position = Vector3.zero;
+                    objeto.transform.localScale = Vector3.one;
+                    if (contenido.GetChild(j).childCount >= 2)
                     {
-                        if (contenido.GetChild(s).childCount == 0)
+                        for (int s = 0; s < contenido.childCount; s++)
                         {
-                            objeto.transform.SetParent(contenido.GetChild(s));
-                            break;
+                            if (contenido.GetChild(s).childCount == 0)
+                            {
+                                objeto.transform.SetParent(contenido.GetChild(s));
+                                goto continuacion;
+                            }
                         }
                     }
                 }
-                objeto.transform.position = Vector3.zero;
-                objeto.transform.localScale = Vector3.one;
+                continuacion:
+
 
                 ObjetoInvID o = inventario[i];
                 pool[i].ID = o.id;

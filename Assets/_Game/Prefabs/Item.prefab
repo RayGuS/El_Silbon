@@ -97,7 +97,8 @@ MonoBehaviour:
   descripcion: {fileID: 0}
   baseDAtos: {fileID: 11400000, guid: f32998bde23eb9248a9841d9756036d2, type: 2}
   desfase: {x: 0, y: -50, z: 0}
-  tCantidad: {fileID: 0}
+  tCantidad: {fileID: 1024880540880146995, guid: cf274285f42a787489d8613d3d30700c,
+    type: 3}
   tNombre: {fileID: 0}
   tDescripcion: {fileID: 0}
 --- !u!114 &6186205806501143014

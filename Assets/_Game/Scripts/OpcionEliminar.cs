@@ -13,19 +13,18 @@ public class OpcionEliminar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inv = GameObject.Find("inv").GetComponent<Inventario>();
-        StartCoroutine(Eliminar());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Eliminar();
     }
 
-    public IEnumerator Eliminar()
+    public void Eliminar()
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         if (this.gameObject.activeInHierarchy)
         {
             deslizador.maxValue = inv.osc;
@@ -42,7 +41,8 @@ public class OpcionEliminar : MonoBehaviour
 
     public void Cancelar()
     {
-
+        deslizador.value = 1;
+        this.gameObject.SetActive(false);
     }
 
 }

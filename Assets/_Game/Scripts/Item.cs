@@ -42,7 +42,7 @@ public class Item : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // Update is called once per frame
     void Update()
     {
-
+        RellenarFondo();
     }
 
     public void RellenarFondo()

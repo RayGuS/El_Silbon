@@ -112,8 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cantidad: 1
-  ID: 1
+  ID: 0
   inv: {fileID: 0}
+  acumulable: 0
   GrabItem:
     m_Name: Grab Item
     m_Type: 0
