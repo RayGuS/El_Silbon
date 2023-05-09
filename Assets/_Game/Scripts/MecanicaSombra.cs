@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class MecanicaSombra : MonoBehaviour
 {
-    public Transform jugador;
-   
+    private Transform jugador;
+
+    private GameObject[] o;
 
     Vector3 direction;
 
     float velRotation = 6f;
     float velcazaa = 8f;
 
-  
+    void Start()
+    {
+        o = GameObject.FindGameObjectsWithTag("Player");
+        jugador = o[0].transform;
+    }
+
 
     void Update()
     {
