@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class DestruirSombra : MonoBehaviour
 {
+    public bool muerteSombra;
+
     void OnTriggerEnter(Collider other)
     {
         
         if (other.tag == "Sombra")
         {
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, 2);
+            muerteSombra = true;
         }
     }
 }
