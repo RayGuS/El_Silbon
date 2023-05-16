@@ -13,7 +13,7 @@ public class AgarrarObjetosPesados : MonoBehaviour
     public PlayerInput _playerInput;
     public ThirdPersonController _thirdPersonController;
     public CrouchControl CrouchScript;
-    private float GrabmoveSpeed = 0.5f;
+    public float GrabmoveSpeed = 1.5f;
     private float moveSpeed;
     private float sprintSpeed;
    
@@ -37,6 +37,8 @@ public class AgarrarObjetosPesados : MonoBehaviour
 
     public void GrabObj()
     {
+        PlayerController.singleton.isHolding = true;
+
         objetoPruebaPesado.GetComponent<Rigidbody>().isKinematic = true;
 
         CrouchScript.enabled = false;
@@ -51,11 +53,13 @@ public class AgarrarObjetosPesados : MonoBehaviour
 
         objetoPruebaPesado.transform.SetParent(ObjetoPruebaPesadoParent);
 
-        anim.SetBool("HoldingSemi", true);
+        anim.SetBool("HoldingHeavy", true);
     }
 
     public void DropObj()
     {
+        PlayerController.singleton.isHolding = false;
+
         ObjetoPruebaPesadoParent.DetachChildren();
         objetoPruebaPesado.transform.eulerAngles = new Vector3(objetoPruebaPesado.transform.position.x, objetoPruebaPesado.transform.position.z, objetoPruebaPesado.transform.position.y);
         objetoPruebaPesado.GetComponent<Rigidbody>().isKinematic = false;
@@ -66,13 +70,13 @@ public class AgarrarObjetosPesados : MonoBehaviour
         _thirdPersonController.MoveSpeed = moveSpeed;
         _thirdPersonController.SprintSpeed = sprintSpeed;
 
-        anim.SetBool("HoldingSemi", false);
+        anim.SetBool("HoldingHeavy", false);
     }
 
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !PlayerController.singleton.isHolding)
         {
             bool isEKeyHeld = _playerInput.actions["Grab"].ReadValue<float>() > 0.5f;
             if (isEKeyHeld)
