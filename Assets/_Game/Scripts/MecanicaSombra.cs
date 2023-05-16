@@ -29,10 +29,10 @@ public class MecanicaSombra : MonoBehaviour
     void Update()
     {
         direction = jugador.position - this.transform.position;
-        if (Vector3.Distance(jugador.position - this.transform.position, this.transform.position) < 50)
+        if (Vector3.Distance(jugador.position - this.transform.position, this.transform.position) < 50) 
         {
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), velRotation * Time.deltaTime);
-            if (Vector3.Distance(jugador.position - this.transform.position, this.transform.position) > 4f)
+            if (Vector3.Distance(jugador.position - this.transform.position, this.transform.position) > 1.5f) 
             {
                 this.transform.Translate(0, 0, velcazaa * Time.deltaTime);
                 animSombra.SetBool("Caminar", true);

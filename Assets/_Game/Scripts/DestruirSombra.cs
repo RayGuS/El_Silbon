@@ -11,7 +11,7 @@ public class DestruirSombra : MonoBehaviour
         
         if (other.tag == "Sombra")
         {
-            Destroy(other.gameObject, 2);
+            Destroy(other.gameObject);
             muerteSombra = true;
         }
     }
