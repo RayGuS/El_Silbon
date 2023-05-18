@@ -14,6 +14,7 @@ public class MEstados : MonoBehaviour
     public Transform jugador;
     public NavMeshAgent silbon;
     private float desfase = 240f;
+    public Animator anim;
 
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class MEstados : MonoBehaviour
     {
         StartCoroutine(MaquinaEstados());
         StartCoroutine(MovimientoAleatorio());
+        anim = GameObject.FindGameObjectWithTag("Silbon").GetComponentInChildren<Animator>();
     }
 
     public IEnumerator MaquinaEstados()
@@ -85,6 +87,7 @@ public class MEstados : MonoBehaviour
     {
 
         silbon.SetDestination(new Vector3(jugador.position.x, transform.position.y, jugador.position.z));
+        anim.SetBool("Deambular", true);
 
         CalcularDistancia();
         if (distanciaJugador < distanciaAtaque)
@@ -101,6 +104,8 @@ public class MEstados : MonoBehaviour
     public void EstadoAtacar()
     {
         Debug.Log("Has Muerto");
+        anim.SetBool("Deambular", false);
+        anim.SetBool("Ataque", true);
     }
 
     public IEnumerator MovimientoAleatorio()
@@ -110,6 +115,7 @@ public class MEstados : MonoBehaviour
         {
             yield return new WaitForSeconds(3f);
             PosicionarAleatorio();
+            anim.SetBool("Deambular", true);
         } 
     }
 
