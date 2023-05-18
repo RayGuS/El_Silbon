@@ -20,16 +20,14 @@ public class CPJugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isIKeyHeld = playerInput.actions["OpenInventory"].ReadValue<float>() > 0.5f;
-        if (isIKeyHeld)
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            StartCoroutine(AbrirInventario());
+            AbrirInventario();
         }
     }
 
-    public IEnumerator AbrirInventario()
+    public void AbrirInventario()
     {
-        yield return new WaitForSeconds(1f);
 
         Cursor.lockState = CursorLockMode.None;
 

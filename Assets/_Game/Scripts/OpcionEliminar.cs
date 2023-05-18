@@ -24,7 +24,6 @@ public class OpcionEliminar : MonoBehaviour
 
     public void Eliminar()
     {
-        //yield return new WaitForSeconds(1f);
         if (this.gameObject.activeInHierarchy)
         {
             deslizador.maxValue = inv.osc;
