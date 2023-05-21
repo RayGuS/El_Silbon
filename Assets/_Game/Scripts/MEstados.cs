@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 public class MEstados : MonoBehaviour
@@ -14,6 +15,10 @@ public class MEstados : MonoBehaviour
     public Transform jugador;
     public NavMeshAgent silbon;
     private float desfase = 240f;
+    public Animator anim;
+
+    public GameObject camara;
+    public GameObject silbonCamera;
 
 
     // Start is called before the first frame update
@@ -21,6 +26,7 @@ public class MEstados : MonoBehaviour
     {
         StartCoroutine(MaquinaEstados());
         StartCoroutine(MovimientoAleatorio());
+        anim = GameObject.FindGameObjectWithTag("Silbon").GetComponentInChildren<Animator>();
     }
 
     public IEnumerator MaquinaEstados()
@@ -72,7 +78,6 @@ public class MEstados : MonoBehaviour
 
     public void EstadoDeambular()
     {
-
         CalcularDistancia();
         if (distanciaJugador < distanciaSeguir)
         {
@@ -85,6 +90,7 @@ public class MEstados : MonoBehaviour
     {
 
         silbon.SetDestination(new Vector3(jugador.position.x, transform.position.y, jugador.position.z));
+        anim.SetBool("Deambular", true);
 
         CalcularDistancia();
         if (distanciaJugador < distanciaAtaque)
@@ -101,6 +107,11 @@ public class MEstados : MonoBehaviour
     public void EstadoAtacar()
     {
         Debug.Log("Has Muerto");
+        camara.SetActive(false);
+        silbonCamera.SetActive(true);
+        anim.SetBool("Deambular", false);
+        anim.SetBool("Ataque", true);
+        Invoke("CambioEscena", 1f);
     }
 
     public IEnumerator MovimientoAleatorio()
@@ -108,15 +119,18 @@ public class MEstados : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         while (estado == Estados.Deambular)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f);
             PosicionarAleatorio();
-        } 
+        }
+        
     }
 
     public void PosicionarAleatorio()
     {
+
         silbon.SetDestination(new Vector3(Random.Range(jugador.position.x - desfase, jugador.position.x + desfase), transform.position.y, Random.Range(jugador.position.z - desfase, jugador.position.z + desfase)));
         ReducirRango();
+        anim.SetBool("Deambular", true);
     }
 
     public void ReducirRango()
@@ -125,6 +139,11 @@ public class MEstados : MonoBehaviour
         {
             desfase = desfase - Time.deltaTime *30;
         } 
+    }
+
+     void CambioEscena ()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     private void OnDrawGizmos()
