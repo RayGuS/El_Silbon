@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class BarraVida : MonoBehaviour
 {
@@ -10,13 +11,56 @@ public class BarraVida : MonoBehaviour
     public int daño;
     public float vidaMax;
     public float vidaActual;
+    public bool defeat;
+    public float periodoRevision = 2;
+    public bool bajarVida;
+    public GameObject gameOver;
 
-    void OnTriggerEnter (Collider other)
+
+    void Start()
     {
+
+        StartCoroutine(BajarVida());
+
+    }
+
+
+
+    void OnTriggerStay(Collider other)
+    {
+
         if (other.tag == "Sombra")
         {
-            vidaActual = vidaActual - daño;
-            barraVida.fillAmount = vidaActual / vidaMax;
+            bajarVida = true;
+            if (vidaActual == 0)
+            {
+                defeat = true;
+            }
+        }
+    }
+
+
+
+    public IEnumerator BajarVida()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(periodoRevision);
+
+            if (bajarVida == true)
+            {
+                vidaActual = vidaActual - daño ;
+                barraVida.fillAmount = vidaActual / vidaMax;
+
+                if (vidaActual == 0)
+                {
+                    gameObject.SetActive(true);
+                }
+                else
+                {
+                    gameOver.SetActive(false);
+                }
+            }
         }
     }
 }
