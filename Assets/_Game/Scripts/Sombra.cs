@@ -9,9 +9,11 @@ public class Sombra : MonoBehaviour
     public BarraVida vida;
     public float condicion;
     public float periodoRevision = 5;
+    public Transform jugador;
   
     void Start()
     {
+        jugador = PlayerController.singleton.transform;
 
         StartCoroutine(InstanciarSombra());
         
@@ -25,7 +27,7 @@ public class Sombra : MonoBehaviour
 
             if (cordura.corduraActual < condicion && vida.defeat == false)
             {
-                Vector3 posAleatoria = new Vector3(Random.Range(-5, 5), 2, Random.Range(-5, 5));
+                Vector3 posAleatoria = new Vector3(Random.Range(jugador.position.x - 5, jugador.position.x + 5), 2, Random.Range(jugador.position.z - 5, jugador.position.z + 5));
                 Instantiate(sombra, posAleatoria, sombra.transform.rotation);
             }
 

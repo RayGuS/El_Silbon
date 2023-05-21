@@ -19,7 +19,7 @@ public class Linterna : MonoBehaviour
         valorBateria = (int)cantBateria;
         porcentaje.text = valorBateria.ToString() + "%";
 
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("l"))
         {
             activLight = !activLight;
             if(activLight == true)
