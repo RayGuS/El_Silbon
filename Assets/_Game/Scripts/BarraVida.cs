@@ -12,9 +12,8 @@ public class BarraVida : MonoBehaviour
     public float vidaMax;
     public float vidaActual;
     public bool defeat;
-    public float periodoRevision = 2;
+    public float periodoRevision = 1;
     public bool bajarVida;
-    public GameObject gameOver;
 
 
     void Start()
@@ -37,6 +36,10 @@ public class BarraVida : MonoBehaviour
                 defeat = true;
             }
         }
+        else
+        {
+            bajarVida = false;
+        }
     }
 
 
@@ -51,15 +54,6 @@ public class BarraVida : MonoBehaviour
             {
                 vidaActual = vidaActual - daño ;
                 barraVida.fillAmount = vidaActual / vidaMax;
-
-                if (vidaActual == 0)
-                {
-                    gameObject.SetActive(true);
-                }
-                else
-                {
-                    gameOver.SetActive(false);
-                }
             }
         }
     }
