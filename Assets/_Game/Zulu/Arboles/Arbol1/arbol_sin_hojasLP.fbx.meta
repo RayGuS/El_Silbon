@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tronco
-    second: {fileID: 2100000, guid: e1337e440ab07b74780bc725df4d5407, type: 2}
+    second: {fileID: 2100000, guid: 3845a91a1c8f967499ff080d2757d33b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

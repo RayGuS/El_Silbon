@@ -3,7 +3,17 @@ guid: 257dd03d707efe842ab4e55d0310e4a2
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hoja
+    second: {fileID: 2100000, guid: 2cc13a0cd12b5a84f94585207df0e3c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tronco
+    second: {fileID: 2100000, guid: 3845a91a1c8f967499ff080d2757d33b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
