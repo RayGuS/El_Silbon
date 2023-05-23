@@ -28,7 +28,6 @@ public class CrouchControl : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         moveSpeed = _thirdPersonController.MoveSpeed;
         sprintSpeed = _thirdPersonController.SprintSpeed;
-        //anim = GetComponent<Animator>();
         Crouch.Enable();
         capCollider = GetComponent<CapsuleCollider>();
     }

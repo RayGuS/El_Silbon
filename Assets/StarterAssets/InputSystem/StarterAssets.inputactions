@@ -33,6 +33,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "95dc2388-6086-4e24-904e-d43d144065ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "5739e2b3-413a-4ba2-9eb1-52d4c5733d02",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "PassThrough",
                     "id": "980e881e-182c-404c-8cbf-3d09fdb48fef",
@@ -279,67 +297,45 @@
                 },
                 {
                     "name": "",
-                    "id": "6bf3f08d-4137-43b6-91f0-d441469e47b1",
-                    "path": "<Keyboard>/i",
+                    "id": "a789b018-e36c-49f2-80da-51499905f6b0",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "OpenInventory",
+                    "groups": "KeyboardMouse",
+                    "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "42b488bd-a347-439a-bc3c-1a773c40e720",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "5734556c-3599-4135-aa23-3cd5bd3a9c7c",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "OpenInventory",
+                    "groups": "Gamepad",
+                    "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a7e02614-f4bb-4a69-809b-54ba165b8815",
-                    "path": "<Keyboard>/j",
+                    "id": "77033a2a-6512-4aee-a200-bcec0b86d6bf",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "GrabItem",
+                    "groups": "KeyboardMouse",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "61e6a0b8-145b-4051-a45c-e91dad19ed5e",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GrabItem",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c0f47c38-dc6f-441b-9184-ae4792eda6c6",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0b9d524e-8b72-4abb-b70d-353d2a7eeaf8",
+                    "id": "c192f049-8813-4c6c-8b9b-446d6411a255",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "click",
+                    "groups": "Gamepad",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

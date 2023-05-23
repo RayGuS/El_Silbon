@@ -32,7 +32,7 @@ public class BarraCordura : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         //print(other.tag);
-        if (other.tag == "Luz")
+        if (other.gameObject.tag == "Luz")
         {
             luz = true;
         }
