@@ -67,8 +67,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-<<<<<<< HEAD
-=======
                 },
                 {
                     "name": "OpenInventory",
@@ -96,7 +94,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
->>>>>>> parent of 4437b84... actualizacion maintemp
+                },
+                {
+                    "name": "Inventario",
+                    "type": "Button",
+                    "id": "583bd51c-f6ee-411e-91a7-db9aa1a321ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Linterna",
+                    "type": "Button",
+                    "id": "6f95af27-93b9-4ad6-bb66-1040e668b2c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MenuPausa",
+                    "type": "Button",
+                    "id": "600cb484-10b3-44f6-9692-3c0467c7d449",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -339,6 +363,72 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b098dea3-6e1b-49be-94b9-5b163bb3d44e",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventario",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "309181f1-ebb0-4017-bad2-eb2e99e02371",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventario",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "020937b0-a444-4cfd-87b0-d5d07c8976e4",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Linterna",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b14445c-e383-4159-920b-430b6042a87c",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Linterna",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34254e4f-15ef-4907-9931-0f7b83b8692f",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuPausa",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e99fb99-8299-42f1-91e7-5b8ee521ac51",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuPausa",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

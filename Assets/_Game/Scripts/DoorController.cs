@@ -5,21 +5,24 @@ using UnityEngine.InputSystem;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] private Animator Door = null;
+    [SerializeField] private Animator DoorPivoting = null;
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Door.Play("DoorOpen", 0, 0.0f);
+            DoorPivoting.Play("JueputaMalparido", 0, 0.0f);
+            Debug.Log("Abriendo");
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Door.Play("DoorClose", 0, 0.0f);
+            DoorPivoting.Play("JueputaMalparidoClosing", 0, 0.0f);
+            Debug.Log("Cerrando");
+
 
         }
     }

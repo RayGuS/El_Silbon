@@ -5,24 +5,30 @@ using UnityEngine.InputSystem;
 
 public class CPJugador : MonoBehaviour
 {
-
+    private bool bloqueo;
     public GameObject inventario;
     public InputAction OpenInventory;
-    public PlayerInput playerInput;
+    public InputActionProperty inpAbrirIventario;
 
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(AbrirInventario());
+
         OpenInventory.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+
+        if (inpAbrirIventario.action.ReadValue<float>()>0.5f && !bloqueo)
         {
+            bloqueo = true;
             AbrirInventario();
+        }
+        if (inpAbrirIventario.action.ReadValue<float>() < 0.5f)
+        {
+            bloqueo = false;
         }
     }
 
