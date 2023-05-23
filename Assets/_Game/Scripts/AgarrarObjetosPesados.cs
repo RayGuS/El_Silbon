@@ -13,7 +13,7 @@ public class AgarrarObjetosPesados : MonoBehaviour
     public PlayerInput _playerInput;
     public ThirdPersonController _thirdPersonController;
     public CrouchControl CrouchScript;
-    private float GrabmoveSpeed = 0.5f;
+    public float GrabmoveSpeed = 1.5f;
     private float moveSpeed;
     private float sprintSpeed;
    
