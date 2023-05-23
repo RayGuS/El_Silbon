@@ -67,6 +67,36 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+<<<<<<< HEAD
+=======
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "94163340-fcaa-4973-915a-acd239fa956a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GrabItem",
+                    "type": "Button",
+                    "id": "38cea6d5-6c3f-4861-97bf-b67de8e5159d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "click",
+                    "type": "Button",
+                    "id": "164aeaf6-a510-46c8-8e0b-c02424d1c420",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+>>>>>>> parent of 4437b84... actualizacion maintemp
                 }
             ],
             "bindings": [
