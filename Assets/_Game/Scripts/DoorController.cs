@@ -12,7 +12,7 @@ public class DoorController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            DoorPivoting.Play("JueputaMalparido", 0, 0.0f);
+            DoorPivoting.Play("OpenDoor", 0, 0.0f);
             Debug.Log("Abriendo");
         }
     }
@@ -20,7 +20,7 @@ public class DoorController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            DoorPivoting.Play("JueputaMalparidoClosing", 0, 0.0f);
+            DoorPivoting.Play("CloseDoor", 0, 0.0f);
             Debug.Log("Cerrando");
 
 
