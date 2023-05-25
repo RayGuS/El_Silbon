@@ -5,22 +5,29 @@ using UnityEngine.InputSystem;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] private Animator Door = null;
+    [SerializeField] private Animator DoorPivoting = null;
 
+    private ControladorSonidos controlSonido;
+
+    private void Start()
+    {
+        controlSonido = FindObjectOfType<ControladorSonidos>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Door.Play("DoorOpen", 0, 0.0f);
+            DoorPivoting.Play("OpenDoor", 0, 0.0f);
+            controlSonido.EscogerAudio(5, TiposSonidos.Fx);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Door.Play("DoorClose", 0, 0.0f);
-
+            DoorPivoting.Play("CloseDoor", 0, 0.0f);
+            controlSonido.EscogerAudio(6, TiposSonidos.Fx);
         }
     }
 }

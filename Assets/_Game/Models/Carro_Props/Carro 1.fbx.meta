@@ -3,7 +3,32 @@ guid: e44046c2280f70f4e8a5567ac5ee5ef3
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carroceria
+    second: {fileID: 2100000, guid: a4adcd6cfc2a34947adaba31b9d68fd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Llantas
+    second: {fileID: 2100000, guid: e1a0b3232f6d90d4c911e63beb8044fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metales 1
+    second: {fileID: 2100000, guid: 43cd8f5617ac1c045a7b5d17e72ea1e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Partes
+    second: {fileID: 2100000, guid: 3355774cbc028504da55d8cef1442533, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Telas
+    second: {fileID: 2100000, guid: c9a454ec650430446a356346f0106337, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
