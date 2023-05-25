@@ -7,23 +7,27 @@ public class DoorController : MonoBehaviour
 {
     [SerializeField] private Animator DoorPivoting = null;
 
+    private ControladorSonidos controlSonido;
+
+    private void Start()
+    {
+        controlSonido = FindObjectOfType<ControladorSonidos>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            DoorPivoting.Play("JueputaMalparido", 0, 0.0f);
-            Debug.Log("Abriendo");
+            DoorPivoting.Play("OpenDoor", 0, 0.0f);
+            controlSonido.EscogerAudio(5, TiposSonidos.Fx);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            DoorPivoting.Play("JueputaMalparidoClosing", 0, 0.0f);
-            Debug.Log("Cerrando");
-
-
+            DoorPivoting.Play("CloseDoor", 0, 0.0f);
+            controlSonido.EscogerAudio(6, TiposSonidos.Fx);
         }
     }
 }

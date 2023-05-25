@@ -13,24 +13,45 @@ MonoBehaviour:
   m_Name: BaseDatos
   m_EditorClassIdentifier: 
   baseDatos:
-  - nombre: Gas
+  - nombre: Grabadora
     ID: 0
-    imagen: {fileID: 21300000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
-    tipo: 0
-    acumulable: 1
-    descripcion: Recarga Linterna
-    vacio: Recargar
-  - nombre: Linterna
-    ID: 1
-    imagen: {fileID: 21300000, guid: 8d98ab6168c3e91439339f1908b8fe97, type: 3}
+    imagen: {fileID: 21300000, guid: 2bfeb4bec0cd73d4c98760c73f4e9570, type: 3}
     tipo: 1
     acumulable: 0
-    descripcion: Ayuda a ver
-    vacio: Encender
-  - nombre: caset
+    descripcion: reproduce Caset's
+    vacio: 
+  - nombre: Caset #1
+    ID: 1
+    imagen: {fileID: 21300000, guid: fa3bb857b76ace446829189f779acdba, type: 3}
+    tipo: 1
+    acumulable: 0
+    descripcion: Relato numero 1
+    vacio: CasetUno
+  - nombre: Caset #2
     ID: 2
-    imagen: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
+    imagen: {fileID: 21300000, guid: fa3bb857b76ace446829189f779acdba, type: 3}
     tipo: 0
     acumulable: 0
-    descripcion: Caset 1 audio
-    vacio: Reproducir
+    descripcion: Relato numero 2
+    vacio: CasetDos
+  - nombre: Caset #3
+    ID: 3
+    imagen: {fileID: 21300000, guid: fa3bb857b76ace446829189f779acdba, type: 3}
+    tipo: 0
+    acumulable: 0
+    descripcion: Relato numero 3
+    vacio: CasetTres
+  - nombre: Caset #4
+    ID: 4
+    imagen: {fileID: 21300000, guid: fa3bb857b76ace446829189f779acdba, type: 3}
+    tipo: 0
+    acumulable: 0
+    descripcion: Relato numero 4
+    vacio: CasetCuatro
+  - nombre: Linterna
+    ID: 5
+    imagen: {fileID: 21300000, guid: c53365275fd664047aa62a9ecd1bcbf4, type: 3}
+    tipo: 0
+    acumulable: 0
+    descripcion: Ilumina el sendero
+    vacio: 
