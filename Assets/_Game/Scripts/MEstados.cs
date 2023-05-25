@@ -20,10 +20,13 @@ public class MEstados : MonoBehaviour
     public GameObject camara;
     public GameObject silbonCamera;
 
+    private ControladorSonidos controlSonido;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        controlSonido = FindObjectOfType<ControladorSonidos>();
         StartCoroutine(MaquinaEstados());
         StartCoroutine(MovimientoAleatorio());
         anim = GameObject.FindGameObjectWithTag("Silbon").GetComponentInChildren<Animator>();
@@ -79,6 +82,7 @@ public class MEstados : MonoBehaviour
     public void EstadoDeambular()
     {
         CalcularDistancia();
+        controlSonido.EscogerAudio(7, 0.2f);
         if (distanciaJugador < distanciaSeguir)
         {
             CambiarEstado(Estados.Perseguir);
@@ -92,6 +96,8 @@ public class MEstados : MonoBehaviour
         silbon.SetDestination(new Vector3(jugador.position.x, transform.position.y, jugador.position.z));
         anim.SetBool("Deambular", true);
 
+        controlSonido.EscogerAudio(8, 0.2f);
+
         CalcularDistancia();
         if (distanciaJugador < distanciaAtaque)
         {
@@ -100,13 +106,12 @@ public class MEstados : MonoBehaviour
         else if (distanciaJugador > distanciaHuir)
         {
             CambiarEstado(Estados.Deambular);
-            
         }
     }
 
     public void EstadoAtacar()
     {
-        Debug.Log("Has Muerto");
+    //    controlSonido.EscogerAudio(9, 1f);
         camara.SetActive(false);
         silbonCamera.SetActive(true);
         anim.SetBool("Deambular", false);

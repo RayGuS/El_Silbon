@@ -7,13 +7,19 @@ public class DoorController : MonoBehaviour
 {
     [SerializeField] private Animator DoorPivoting = null;
 
+    private ControladorSonidos controlSonido;
+
+    private void Start()
+    {
+        controlSonido = FindObjectOfType<ControladorSonidos>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             DoorPivoting.Play("OpenDoor", 0, 0.0f);
-            Debug.Log("Abriendo");
+            controlSonido.EscogerAudio(5, 0.3f);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -21,9 +27,7 @@ public class DoorController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DoorPivoting.Play("CloseDoor", 0, 0.0f);
-            Debug.Log("Cerrando");
-
-
+            controlSonido.EscogerAudio(6, 0.3f);
         }
     }
 }

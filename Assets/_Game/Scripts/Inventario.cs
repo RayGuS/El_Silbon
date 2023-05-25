@@ -44,10 +44,12 @@ public class Inventario : MonoBehaviour
 
     public Vector3 posOriginal;
 
+    private ControladorSonidos controlSonido;
 
     // Start is called before the first frame update
     void Start()
     {
+        controlSonido = FindObjectOfType<ControladorSonidos>();
 
         posOriginal = transform.parent.position;
 
@@ -264,4 +266,20 @@ public class Inventario : MonoBehaviour
         }
     }
 
+    void CasetUno()
+    {
+        controlSonido.EscogerAudio(1, 1f);
+    }
+    void CasetDos()
+    {
+        controlSonido.EscogerAudio(2, 1f);
+    }
+    void CasetTres()
+    {
+        controlSonido.EscogerAudio(3, 1f);
+    }
+    void CasetCuatro()
+    {
+        controlSonido.EscogerAudio(4, 1f);
+    }
 }

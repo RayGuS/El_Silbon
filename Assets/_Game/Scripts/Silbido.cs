@@ -7,9 +7,12 @@ public class Silbido : MonoBehaviour
 
     public Vector2 tiempo;
 
+    private ControladorSonidos controlSonido;
+
     // Start is called before the first frame update
     void Start()
     {
+        controlSonido = FindObjectOfType<ControladorSonidos>();
         StartCoroutine(EsperarSilbido());
     }
 
