@@ -268,18 +268,18 @@ public class Inventario : MonoBehaviour
 
     void CasetUno()
     {
-        controlSonido.EscogerAudio(1, 1f);
+        controlSonido.EscogerAudio(1, TiposSonidos.Grabaciones);
     }
     void CasetDos()
     {
-        controlSonido.EscogerAudio(2, 1f);
+        controlSonido.EscogerAudio(2, TiposSonidos.Grabaciones);
     }
     void CasetTres()
     {
-        controlSonido.EscogerAudio(3, 1f);
+        controlSonido.EscogerAudio(3, TiposSonidos.Grabaciones);
     }
     void CasetCuatro()
     {
-        controlSonido.EscogerAudio(4, 1f);
+        controlSonido.EscogerAudio(4, TiposSonidos.Grabaciones);
     }
 }

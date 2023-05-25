@@ -6,15 +6,45 @@ public class ControladorSonidos : MonoBehaviour
 {
     [SerializeField] private AudioClip[] audios;
 
-    public AudioSource controlSonidos;
+    public AudioSource controlSonidosAmbiente;
+    public AudioSource controlSonidosFx;
+    public AudioSource controlSonidosGrabaciones;
+    public AudioSource controlSonidosSilbon;
 
     public void Awake()
     {
-        controlSonidos = GetComponent<AudioSource>();
+
     }
 
-    public void EscogerAudio(int pista, float volumen)
+    public void EscogerAudio(int pista, TiposSonidos ts)
     {
-        controlSonidos.PlayOneShot(audios[pista], volumen);
+        FuenteAudio(ts).clip = audios[pista];
+        FuenteAudio(ts).Play();
     }
+
+    public AudioSource FuenteAudio(TiposSonidos ts)
+    {
+        switch (ts)
+        {
+            case TiposSonidos.Ambiente:
+                return controlSonidosAmbiente;
+            case TiposSonidos.Fx:
+                return controlSonidosFx;
+            case TiposSonidos.Grabaciones:
+                return controlSonidosGrabaciones;
+            case TiposSonidos.Silbon:
+                return controlSonidosSilbon;
+            default:
+                return controlSonidosAmbiente;
+        }
+    }
+
+}
+
+public enum TiposSonidos
+{
+    Ambiente = 0,
+    Fx = 1,
+    Grabaciones = 2,
+    Silbon = 3
 }

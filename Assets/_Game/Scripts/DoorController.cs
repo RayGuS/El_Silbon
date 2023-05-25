@@ -19,7 +19,7 @@ public class DoorController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DoorPivoting.Play("OpenDoor", 0, 0.0f);
-            controlSonido.EscogerAudio(5, 0.3f);
+            controlSonido.EscogerAudio(5, TiposSonidos.Fx);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -27,7 +27,7 @@ public class DoorController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DoorPivoting.Play("CloseDoor", 0, 0.0f);
-            controlSonido.EscogerAudio(6, 0.3f);
+            controlSonido.EscogerAudio(6, TiposSonidos.Fx);
         }
     }
 }

@@ -30,6 +30,7 @@ public class MEstados : MonoBehaviour
         StartCoroutine(MaquinaEstados());
         StartCoroutine(MovimientoAleatorio());
         anim = GameObject.FindGameObjectWithTag("Silbon").GetComponentInChildren<Animator>();
+        CambiarEstado(Estados.Deambular);
     }
 
     public IEnumerator MaquinaEstados()
@@ -67,8 +68,10 @@ public class MEstados : MonoBehaviour
             case Estados.Deambular:
                 PosicionarAleatorio();
                 StartCoroutine(MovimientoAleatorio());
+                controlSonido.EscogerAudio(7, TiposSonidos.Ambiente);
                 break;
             case Estados.Perseguir:
+                controlSonido.EscogerAudio(8, TiposSonidos.Ambiente);
                 break;
             case Estados.Atacar:
                 break;
@@ -82,7 +85,7 @@ public class MEstados : MonoBehaviour
     public void EstadoDeambular()
     {
         CalcularDistancia();
-        controlSonido.EscogerAudio(7, 0.2f);
+        
         if (distanciaJugador < distanciaSeguir)
         {
             CambiarEstado(Estados.Perseguir);
@@ -96,7 +99,7 @@ public class MEstados : MonoBehaviour
         silbon.SetDestination(new Vector3(jugador.position.x, transform.position.y, jugador.position.z));
         anim.SetBool("Deambular", true);
 
-        controlSonido.EscogerAudio(8, 0.2f);
+        
 
         CalcularDistancia();
         if (distanciaJugador < distanciaAtaque)
@@ -111,7 +114,6 @@ public class MEstados : MonoBehaviour
 
     public void EstadoAtacar()
     {
-    //    controlSonido.EscogerAudio(9, 1f);
         camara.SetActive(false);
         silbonCamera.SetActive(true);
         anim.SetBool("Deambular", false);
