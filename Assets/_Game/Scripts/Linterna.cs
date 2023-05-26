@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
+
 
 public class Linterna : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class Linterna : MonoBehaviour
     //public GameObject Linterna;
     public bool activLight;
     public float cantBateria = 100;
-    public TMP_Text porcentaje;
     public float perdidaBateria = 0.5f;
-    private int valorBateria = 0;
+    public Image linterna;
+    public float cantBateriaActual = 100;
+    public float cantBateriaMax = 100;
 
     private void Start()
     {
@@ -21,8 +23,6 @@ public class Linterna : MonoBehaviour
     void Update()
     {
         cantBateria = Mathf.Clamp(cantBateria, 0, 100);
-        valorBateria = (int)cantBateria;
-        porcentaje.text = valorBateria.ToString() + "%";
 
         if (Input.GetKeyDown("l"))
         {
@@ -41,6 +41,7 @@ public class Linterna : MonoBehaviour
 
         if(activLight == true && cantBateria >0)
         {
+            linterna.fillAmount = cantBateriaActual / cantBateriaMax;
             cantBateria -= perdidaBateria * Time.deltaTime;
         }
     }
