@@ -12,7 +12,7 @@ public class BarraVida : MonoBehaviour
     public float vidaMax;
     public float vidaActual;
     public bool defeat;
-    public float periodoRevision = 1;
+    public float periodoRevision = 0.5f;
     public bool bajarVida;
 
 
@@ -23,7 +23,10 @@ public class BarraVida : MonoBehaviour
 
     }
 
-
+    private void Update()
+    {
+        vidaActual = Mathf.Clamp(vidaActual, 0, vidaMax);
+    }
 
     void OnTriggerStay(Collider other)
     {
