@@ -23,7 +23,10 @@ public class BarraVida : MonoBehaviour
 
     }
 
-
+    private void Update()
+    {
+        vidaActual = Mathf.Clamp(vidaActual, 0, vidaMax);
+    }
 
     void OnTriggerStay(Collider other)
     {

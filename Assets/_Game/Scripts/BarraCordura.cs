@@ -11,6 +11,23 @@ public class BarraCordura : MonoBehaviour
     public float corduraActual;
     public bool luz = false;
 
+    public Image efectoCordura;
+
+    private float r;
+    private float g;
+    private float b;
+    private float a;
+
+    void Start()
+    {
+            r = efectoCordura.color.r;
+            g = efectoCordura.color.g;
+            b = efectoCordura.color.b;
+            a = efectoCordura.color.a;
+            a = 0;
+   
+    }
+
     void Update()
     {
             
@@ -26,6 +43,18 @@ public class BarraCordura : MonoBehaviour
             barraCordura.fillAmount = corduraActual / corduraMax;
         }
 
+        a = Mathf.Clamp(a, 0, 1f);
+        ChangeColor();
+
+        if (corduraActual <= 17)
+        {
+            a += 0.001f;
+
+        }
+        else
+        {
+            a -= 0.01f;
+        }
 
     }
 
@@ -45,5 +74,11 @@ public class BarraCordura : MonoBehaviour
         {
             luz = false;
         }
+    }
+
+    private void ChangeColor()
+    {
+        Color c = new Color(r, g, b, a);
+        efectoCordura.color = c;
     }
 }

@@ -13,6 +13,11 @@ public class Linterna : MonoBehaviour
     public float perdidaBateria = 0.5f;
     private int valorBateria = 0;
 
+    private void Start()
+    {
+      luzLinterna.enabled = false;
+    }
+
     void Update()
     {
         cantBateria = Mathf.Clamp(cantBateria, 0, 100);

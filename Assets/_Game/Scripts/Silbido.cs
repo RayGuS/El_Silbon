@@ -31,7 +31,7 @@ public class Silbido : MonoBehaviour
         controlEstados.CalcularDistancia();
         if (controlEstados.distanciaJugador > 30)
         {
-            SetVolume(10);
+            SetVolume(5);
             controlSonido.EscogerAudio(10, TiposSonidos.Silbon);
         }
         else if (controlEstados.distanciaJugador > 15 && controlEstados.distanciaJugador < 30)
